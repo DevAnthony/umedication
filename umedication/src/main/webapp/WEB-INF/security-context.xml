@@ -7,7 +7,7 @@
 
 	<!-- toutes les infos et les confs sur la sécurité sont ici ! -->
 	<http auto-config="true">
-		<intercept-url pattern="/**" access="ROLE_DOCTOR" />
+		<intercept-url pattern="/pro/**" access="ROLE_DOCTOR" />
 	</http>
 
 	<authentication-manager>
