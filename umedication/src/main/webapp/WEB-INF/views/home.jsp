@@ -1,5 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page session="false"%>
+<spring:url value="/resources/js/skel.min.js" var="skelMinJs" />
+<spring:url value="/resources/js/skel-panels.min.js" var="skel-panelsMinJs" />
+<spring:url value="/resources/js/init.js" var="initJs" />
+<spring:url value="/resources/css/skel-noscript.css" var="skel-noscript.css" />
+<spring:url value="/resources/css/style.css" var="styleCss" />
+<spring:url value="/resources/css/style-desktop.css" var="style-desktopCss" />
+
 <!DOCTYPE HTML>
 <!--
 	Linear by TEMPLATED
@@ -9,7 +17,7 @@
 <html>
 <head>
 <title>U-Medication</title>
-<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <link
@@ -17,48 +25,21 @@
 	rel='stylesheet' type='text/css'>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="<c:url value="/resources/js/skel.min.js" />"></script>
-<script src="<c:url value="/resources/js/skel-panels.min.js" />"></script>
-<script src="<c:url value="/resources/js/init.js" />"></script>
+<script src="${skelMinJs}"></script>
+<script src="${skel-panelsMinJs}"></script>
+<script src="${initJs}"></script>
 <noscript>
-	<link href="<c:url value="/resources/css/skel-noscript.css" />"
-		rel="stylesheet">
-	<link href="<c:url value="/resources/css/style.css" />"
-		rel="stylesheet">
-	<link href="<c:url value="/resources/css/style-desktop.css" />"
-		rel="stylesheet">
+	<link rel="stylesheet" href="${skel-noscript.css}" />
+	<link rel="stylesheet" href="${styleCss}" />
+	<link rel="stylesheet" href="${style-desktopCss}" />
 </noscript>
 </head>
 <body class="homepage">
 
 	<!-- Header -->
-	<div id="header">
-		<div id="nav-wrapper">
-			<!-- Nav -->
-			<nav id="nav">
-				<ul>
-					<li class="active"><a href="index.html">Accueil</a></li>
-					<li><a href="product.html">Produits</a></li>
-					<li><a href="pharmacy.html">Pharmacie</a></li>
-					<li><a href="no-sidebar.html">Trouver un médicament</a></li>
-					<li><a href="no-sidebar.html">Questions</a></li>
-					<li class="pro"><a href="no-sidebar.html">Accès
-							professionnel</a></li>
-				</ul>
-			</nav>
-		</div>
-		<div class="container">
-
-			<!-- Logo -->
-			<div id="logo">
-				<h1>
-					<a href="#">U-Medication</a>
-				</h1>
-				<span class="tag">Votre diagnostic en un clique !</span>
-			</div>
-		</div>
-	</div>
-
+        <jsp:include page="header.jsp">
+            <jsp:param name="activePage" value="home"/>
+        </jsp:include>
 	<!-- Featured -->
 	<div id="featured">
 		<div class="container">
@@ -167,22 +148,7 @@
 	</div>
 
 	<!-- Footer -->
-	<div id="footer">
-		<div class="container">
-			<section>
-				<header>
-					<h2>Tous vos maux méritent</h2>
-					<span class="byline"><img
-						src="<c:url value="/resources/images/urgo.png" />" /></span>
-				</header>
-				<ul class="contact">
-					<li><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
-					<li><a href="#" class="fa fa-youtube"><span>Youtube</span></a></li>
-				</ul>
-			</section>
-		</div>
-	</div>
-
+	<%@include file="footer.jsp" %>
 	<!-- Copyright -->
 	<div id="copyright">
 		<div class="container">

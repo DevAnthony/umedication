@@ -1,4 +1,4 @@
-package com.bcgc.umedication;
+package com.bcgc.umedication.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -35,5 +35,21 @@ public class HomeController {
 		
 		return "home";
 	}
+
+	@RequestMapping(value = "/pharmacy", method = RequestMethod.GET)
+	public String pharmacy() {
+		return "pharmacy";
+	}
+
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public String contact() {
+		return "contact";
+	}
+	@RequestMapping(value = "/contact", method = RequestMethod.POST)
+	public String contactForm(Locale locale, Model model) {
+		return "contact";
+	}
+	
+	
 	
 }

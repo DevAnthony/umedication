@@ -1,3 +1,11 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<spring:url value="/resources/js/skel.min.js" var="skelMinJs" />
+<spring:url value="/resources/js/skel-panels.min.js" var="skel-panelsMinJs" />
+<spring:url value="/resources/js/init.js" var="initJs" />
+<spring:url value="/resources/css/skel-noscript.css" var="skel-noscript.css" />
+<spring:url value="/resources/css/style.css" var="styleCss" />
+<spring:url value="/resources/css/style-desktop.css" var="style-desktopCss" />
+
 <!DOCTYPE HTML>
 <!--
 	Linear by TEMPLATED
@@ -15,44 +23,19 @@
 	rel='stylesheet' type='text/css'>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="js/skel.min.js"></script>
-<script src="js/skel-panels.min.js"></script>
-<script src="js/init.js"></script>
+<script src="${skelMinJs}"></script>
+<script src="${skel-panelsMinJs}"></script>
+<script src="${initJs}"></script>
 <noscript>
-	<link rel="stylesheet" href="css/skel-noscript.css" />
-	<link rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="css/style-desktop.css" />
+	<link rel="stylesheet" href="${skel-noscript.css}" />
+	<link rel="stylesheet" href="${styleCss}" />
+	<link rel="stylesheet" href="${style-desktopCss}" />
 </noscript>
 </head>
 <body class="homepage">
 
 	<!-- Header -->
-	<div id="header" class="for-page">
-		<div id="nav-wrapper">
-			<!-- Nav -->
-			<nav id="nav">
-				<ul>
-					<li><a href="index.html">Accueil</a></li>
-					<li class="active"><a href="product.html">Produits</a></li>
-					<li><a href="pharmacy.html">Pharmacie</a></li>
-					<li><a href="no-sidebar.html">Trouver un médicament</a></li>
-					<li><a href="no-sidebar.html">Questions</a></li>
-					<li class="pro"><a href="no-sidebar.html">Accès
-							professionnel</a></li>
-				</ul>
-			</nav>
-		</div>
-		<div class="container">
-
-			<!-- Logo -->
-			<div id="logo">
-				<h1>
-					<a href="#">U-Medication</a>
-				</h1>
-				<span class="tag">Votre médicament en un clique !</span>
-			</div>
-		</div>
-	</div>
+	<%@include file="header.jsp" %>
 
 	<!-- Main -->
 	<div id="main">
@@ -67,24 +50,24 @@
 
 			<div class="row">
 				<section class="6u">
-					<a href="myproduct.html" class="image full"><img
-						src="images/biafine.jpg" alt=""></a>
+					<a href="<c:url value="/product" />" class="image full"><img
+						src="<c:url value="/resources/images/biafine.jpg" />" alt=""></a>
 					<header>
 						<h2>Biafine</h2>
 					</header>
 					<p>Emulsion pour application cutanee</p>
 				</section>
 				<section class="6u">
-					<a href="myproduct.html" class="image full"><img
-						src="images/drill.jpg" alt=""></a>
+					<a href="<c:url value="/product" />" class="image full"><img
+						src="<c:url value="/resources/images/drill.jpg" />" alt=""></a>
 					<header>
 						<h2>Drill</h2>
 					</header>
 					<p>In posuere eleifend odio.</p>
 				</section>
 				<section class="6u">
-					<a href="myproduct.html" class="image full"><img
-						src="images/actifed.jpg" alt=""></a>
+					<a href="<c:url value="/product" />" class="image full"><img
+						src="<c:url value="/resources/images/actifed.jpg" />" alt=""></a>
 					<header>
 						<h2>Actifed</h2>
 					</header>
@@ -92,8 +75,8 @@
 						Maecenas ligula.</p>
 				</section>
 				<section class="6u">
-					<a href="myproduct.html" class="image full"><img
-						src="images/rhinadvil.jpg" alt=""></a>
+					<a href="<c:url value="/product" />" class="image full"><img
+						src="<c:url value="/resources/images/rhinadvil.jpg" />" alt=""></a>
 					<header>
 						<h2>Rhinadvil</h2>
 					</header>
@@ -103,7 +86,7 @@
 
 			<div class="row">
 				<section class="6u">
-					<a href="#" class="image full"><img src="images/biafine.jpg"
+					<a href="#" class="image full"><img src="<c:url value="/resources/images/biafine.jpg" />"
 						alt=""></a>
 					<header>
 						<h2>Mauris vulputate dolor</h2>
@@ -111,7 +94,7 @@
 					<p>In posuere eleifend odio. Quisque semper augue mattis wisi.</p>
 				</section>
 				<section class="6u">
-					<a href="#" class="image full"><img src="images/drill.jpg"
+					<a href="#" class="image full"><img src="<c:url value="/resources/images/drill.jpg" />"
 						alt=""></a>
 					<header>
 						<h2>Mauris vulputate dolor</h2>
@@ -120,7 +103,7 @@
 						Maecenas ligula.</p>
 				</section>
 				<section class="6u">
-					<a href="#" class="image full"><img src="images/actifed.jpg"
+					<a href="#" class="image full"><img src="<c:url value="/resources/images/actifed.jpg" />"
 						alt=""></a>
 					<header>
 						<h2>Mauris vulputate dolor</h2>
@@ -128,7 +111,7 @@
 					<p>In posuere eleifend odio. Quisque semper augue mattis wisi.</p>
 				</section>
 				<section class="6u">
-					<a href="#" class="image full"><img src="images/rhinadvil.jpg"
+					<a href="#" class="image full"><img src="<c:url value="/resources/images/rhinadvil.jpg" />"
 						alt=""></a>
 					<header>
 						<h2>Mauris vulputate dolor</h2>
@@ -151,38 +134,17 @@
 	<div id="tweet">
 		<div class="container">
 			<section>
-				<blockquote>&ldquo;La maladie ne se guérit point en
-					prononçant le nom du médicament, mais en prenant le
-					médicament.&rdquo;</blockquote>
+				<blockquote>&ldquo;La maladie ne se gu�rit point en
+					pronon�ant le nom du m�dicament, mais en prenant le
+					m�dicament.&rdquo;</blockquote>
 			</section>
 		</div>
 	</div>
 
 	<!-- Footer -->
-	<div id="footer">
-		<div class="container">
-			<section>
-				<header>
-					<h2>Tous vos maux méritent</h2>
-					<span class="byline"><img src="images/urgo.png" /></span>
-				</header>
-				<ul class="contact">
-					<li><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
-					<li><a href="#" class="fa fa-youtube"><span>Youtube</span></a></li>
-				</ul>
-			</section>
-		</div>
-	</div>
+	<%@include file="footer.jsp" %>
 
 	<!-- Copyright -->
-	<div id="copyright">
-		<div class="container">
-			<ul class="link-contact">
-				<li><a href="contact.html">Contact</a></li>
-				<li><a href="http://www.urgo.fr/">Site Urgo</a></li>
-				<li>Agence BCGC</li>
-			</ul>
-		</div>
-	</div>
+	<%@include file="copyright.jsp" %>
 </body>
 </html>

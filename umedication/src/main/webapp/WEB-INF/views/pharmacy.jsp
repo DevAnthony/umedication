@@ -1,3 +1,12 @@
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<spring:url value="/resources/js/skel.min.js" var="skelMinJs" />
+<spring:url value="/resources/js/skel-panels.min.js" var="skel-panelsMinJs" />
+<spring:url value="/resources/js/init.js" var="initJs" />
+<spring:url value="/resources/css/skel-noscript.css" var="skel-noscript.css" />
+<spring:url value="/resources/css/style.css" var="styleCss" />
+<spring:url value="/resources/css/style-desktop.css" var="style-desktopCss" />
+
 <!DOCTYPE HTML>
 <!--
 	Linear by TEMPLATED
@@ -15,45 +24,19 @@
 	rel='stylesheet' type='text/css'>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="js/skel.min.js"></script>
-<script src="js/skel-panels.min.js"></script>
-<script src="js/init.js"></script>
+<script src="${skelMinJs}"></script>
+<script src="${skel-panelsMinJs}"></script>
+<script src="${initJs}"></script>
 <noscript>
-	<link rel="stylesheet" href="css/skel-noscript.css" />
-	<link rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="css/style-desktop.css" />
+	<link rel="stylesheet" href="${skel-noscript.css}" />
+	<link rel="stylesheet" href="${styleCss}" />
+	<link rel="stylesheet" href="${style-desktopCss}" />
 </noscript>
 </head>
 <body class="homepage">
 
 	<!-- Header -->
-	<div id="header" class="for-page">
-		<div id="nav-wrapper">
-			<!-- Nav -->
-			<nav id="nav">
-				<ul>
-					<li><a href="index.html">Accueil</a></li>
-					<li><a href="product.html">Produits</a></li>
-					<li class="active"><a href="pharmacy.html">Pharmacie</a></li>
-					<li><a href="no-sidebar.html">Trouver un m√©dicament</a></li>
-					<li><a href="no-sidebar.html">Questions</a></li>
-					<li class="pro"><a href="no-sidebar.html">Acc√®s
-							professionnel</a></li>
-				</ul>
-			</nav>
-		</div>
-		<div class="container">
-
-			<!-- Logo -->
-			<div id="logo">
-				<h1>
-					<a href="#">U-Medication</a>
-				</h1>
-				<span class="tag">Trouver une pharmacie en un clique !</span>
-			</div>
-		</div>
-	</div>
-
+	<%@include file="header.jsp" %>
 	<!-- Main -->
 	<div id="main-product">
 		<div id="content" class="container">
@@ -81,7 +64,7 @@
 										internet</a>
 								</p></li>
 							<li><img src="http://lorempixum.com/100/100/nature/2" />
-								<h3>Universist√© Ren√© Descartes - Paris V</h3>
+								<h3>UniversistÈ RenÈ Descartes - Paris V</h3>
 								<p>
 									4 Avenue de l'Observatoire<br />01 53 73 95 95<br />
 									<a href="http://www.pharmacie.parisdescartes.fr/"
@@ -119,38 +102,17 @@
 	<div id="tweet">
 		<div class="container">
 			<section>
-				<blockquote>&ldquo;La maladie ne se gu√©rit point en
-					pronon√ßant le nom du m√©dicament, mais en prenant le
-					m√©dicament.&rdquo;</blockquote>
+				<blockquote>&ldquo;La maladie ne se guÈrit point en
+					prononÁant le nom du mÈdicament, mais en prenant le
+					mÈdicament.&rdquo;</blockquote>
 			</section>
 		</div>
 	</div>
 
 	<!-- Footer -->
-	<div id="footer">
-		<div class="container">
-			<section>
-				<header>
-					<h2>Tous vos maux m√©ritent</h2>
-					<span class="byline"><img src="images/urgo.png" /></span>
-				</header>
-				<ul class="contact">
-					<li><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
-					<li><a href="#" class="fa fa-youtube"><span>Youtube</span></a></li>
-				</ul>
-			</section>
-		</div>
-	</div>
+	<%@include file="footer.jsp" %>
 
 	<!-- Copyright -->
-	<div id="copyright">
-		<div class="container">
-			<ul class="link-contact">
-				<li><a href="contact.html">Contact</a></li>
-				<li><a href="http://www.urgo.fr/">Site Urgo</a></li>
-				<li>Agence BCGC</li>
-			</ul>
-		</div>
-	</div>
+	<%@include file="copyright.jsp" %>
 </body>
 </html>
