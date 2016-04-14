@@ -2,7 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page session="false"%>
 <spring:url value="/resources/js/skel.min.js" var="skelMinJs" />
-<spring:url value="/resources/js/skel-panels.min.js" var="skel-panelsMinJs" />
+<spring:url value="/resources/js/skel-panels.min.js" var="skelPanelsMinJs" />
 <spring:url value="/resources/js/init.js" var="initJs" />
 <spring:url value="/resources/css/skel-noscript.css" var="skel-noscript.css" />
 <spring:url value="/resources/css/style.css" var="styleCss" />
@@ -26,7 +26,7 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="${skelMinJs}"></script>
-<script src="${skel-panelsMinJs}"></script>
+<script src="${skelPanelsMinJs}"></script>
 <script src="${initJs}"></script>
 <noscript>
 	<link rel="stylesheet" href="${skel-noscript.css}" />
@@ -45,7 +45,7 @@
 		<div class="container">
 			<header>
 				<h2>
-					Welcome to <span class="color-orange">U-Medication</span>
+					Bienvenue sur <span class="color-orange">U-Medication</span>
 				</h2>
 			</header>
 			<hr />
@@ -55,7 +55,7 @@
 					<h3>Chaque maux a sa solution, nous en sommes convaincus !</h3>
 					<p>Trouver les médicaments adaptés selon vos symptômes</p>
 					<a href="#" class="button button-style1">Rechercher un
-						mÃ©dicament</a>
+						médicament</a>
 				</section>
 				<section class="4u">
 					<span class="pennant"><span class="fa fa-ambulance"></span></span>

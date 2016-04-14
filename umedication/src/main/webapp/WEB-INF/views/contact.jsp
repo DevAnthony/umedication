@@ -1,6 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <spring:url value="/resources/js/skel.min.js" var="skelMinJs" />
-<spring:url value="/resources/js/skel-panels.min.js" var="skel-panelsMinJs" />
+<spring:url value="/resources/js/skel-panels.min.js" var="skelPanelsMinJs" />
 <spring:url value="/resources/js/init.js" var="initJs" />
 <spring:url value="/resources/css/skel-noscript.css" var="skel-noscript.css" />
 <spring:url value="/resources/css/style.css" var="styleCss" />
@@ -24,7 +24,7 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="${skelMinJs}"></script>
-<script src="${skel-panelsMinJs}"></script>
+<script src="${skelPanelsMinJs}"></script>
 <script src="${initJs}"></script>
 <noscript>
 	<link rel="stylesheet" href="${skel-noscript.css}" />
