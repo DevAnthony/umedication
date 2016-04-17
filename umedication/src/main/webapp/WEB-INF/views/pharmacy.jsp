@@ -39,7 +39,10 @@
 <body class="homepage">
 
 	<!-- Header -->
-	<%@include file="header.jsp" %>
+    <jsp:include page="header.jsp">
+        <jsp:param name="activePage" value="pharmacy"/>
+        <jsp:param name="tag" value="Trouver une pharmacie en un clique !"/>
+    </jsp:include>
 	<!-- Main -->
 	<div id="main-product">
 		<div id="content" class="container">

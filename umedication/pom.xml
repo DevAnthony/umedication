@@ -14,7 +14,7 @@
 		<spring.security.version>3.2.3.RELEASE</spring.security.version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
-        <hibernate.version>3.6.9.Final</hibernate.version>
+		<hibernate.version>4.3.5.Final</hibernate.version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -34,7 +34,11 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
+		<dependency>
+		   <groupId>org.springframework</groupId>
+		   <artifactId>spring-orm</artifactId>
+		   <version>4.1.6.RELEASE</version>
+		</dependency>
 		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -155,6 +159,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>

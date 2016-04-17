@@ -8,12 +8,14 @@
 	<!-- toutes les infos et les confs sur la sécurité sont ici ! -->
 	<http auto-config="true">
 		<intercept-url pattern="/pro/**" access="ROLE_DOCTOR" />
+		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
 	</http>
 
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
 				<user name="docteur" password="docteur" authorities="ROLE_DOCTOR" />
+				<user name="admin" password="admin" authorities="ROLE_ADMIN" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>

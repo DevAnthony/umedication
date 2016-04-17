@@ -37,15 +37,16 @@
 <body class="homepage">
 
 	<!-- Header -->
-        <jsp:include page="header.jsp">
-            <jsp:param name="activePage" value="home"/>
-        </jsp:include>
+    <jsp:include page="header.jsp">
+        <jsp:param name="activePage" value="home"/>
+        <jsp:param name="tag" value="${context.getMessage('customer.name')}"/>
+    </jsp:include>
 	<!-- Featured -->
 	<div id="featured">
 		<div class="container">
 			<header>
 				<h2>
-					Bienvenue sur <span class="color-orange">U-Medication</span>
+					<spring:message code="welcome" />&nbsp;<span class="color-orange">U-Medication</span>
 				</h2>
 			</header>
 			<hr />

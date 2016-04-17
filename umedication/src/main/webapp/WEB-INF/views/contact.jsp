@@ -1,10 +1,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <spring:url value="/resources/js/skel.min.js" var="skelMinJs" />
 <spring:url value="/resources/js/skel-panels.min.js" var="skelPanelsMinJs" />
 <spring:url value="/resources/js/init.js" var="initJs" />
 <spring:url value="/resources/css/skel-noscript.css" var="skel-noscript.css" />
 <spring:url value="/resources/css/style.css" var="styleCss" />
 <spring:url value="/resources/css/style-desktop.css" var="style-desktopCss" />
+<spring:url value="/contact" var="userActionUrl" />
 
 <!DOCTYPE HTML>
 <!--
@@ -35,7 +37,10 @@
 <body class="homepage">
 
 	<!-- Header -->
-	<%@include file="header.jsp" %>
+    <jsp:include page="header.jsp">
+        <jsp:param name="activePage" value="contact"/>
+        <jsp:param name="tag" value="Contactez nous!"/>
+    </jsp:include>
 	
 	<!-- Main -->
 	<div id="main-product">
@@ -49,13 +54,18 @@
 			<hr />
 			<div class="form-style-8">
 				<h2>Remplisser le formulaire ci-dessous</h2>
-				<form>
-					<input type="text" name="field1" placeholder="Nom complet*" /> <input
-						type="email" name="field2" placeholder="Email*" /> <input
-						type="url" name="field3" placeholder="Sujet*" />
-					<textarea placeholder="Message*"></textarea>
-					<input type="button" value="Envoyer" />
-				</form>
+				<form:form method="post" modelAttribute="contactForm" action="${userActionUrl}">
+					<form:input type="text" path="name" placeholder="Nom complet*" /> 
+					<form:errors path="name" />
+					<form:input type="email" path="email" placeholder="Email*" /> 
+					<form:errors path="email" />
+					<form:input type="text" path="subject" placeholder="Sujet*" />
+					<form:errors path="subject" />
+					<form:textarea path="message" placeholder="Message*"/>
+					<form:errors path="message" />
+			     <button type="submit" class="button"><spring:message code="send" />
+                             </button>
+				</form:form>
 			</div>
 		</div>
 	</div>
