@@ -1,20 +1,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-${request.paramValues}
 	<div id="header"  class="${activePage == 'home' ? '' : 'for-page'}">
 		<div id="nav-wrapper">
 			<!-- Nav -->
 			<nav id="nav">
 				<ul>
-					<li class="${param.activePage == 'home' ? 'active' : ''}"><a href="<c:url value="/" />">Accueil</a></li>
-					<li class="${param.activePage  == 'products' ? 'active' : ''}"><a href="<c:url value="/products" />">Produits</a></li>
-					<li class="${param.activePage  == 'pharmacy' ? 'active' : 'none'}"><a href="<c:url value="/pharmacy" />">Pharmacie</a></li>
-					<li class="${param.activePage  == 'diagnostic' ? 'active' : 'none'}"><a href="#">Trouver un médicament</a></li>
-					<li class="${param.activePage  == 'questions' ? 'active' : 'none'}"><a href="#">Questions</a></li>
-					<li class="pro"><a href="#">Accès
-							professionnel</a></li>
+					<li class="${param.activePage == 'home' ? 'active' : ''}"><a href="<c:url value="/" />"><spring:message code="link.home.text" /></a></li>
+					<li class="${param.activePage  == 'products' ? 'active' : ''}"><a href="<c:url value="/products" />"><spring:message code="link.products.text" /></a></li>
+					<li class="${param.activePage  == 'pharmacy' ? 'active' : 'none'}"><a href="<c:url value="/pharmacy" />"><spring:message code="link.pharmacy.text" /></a></li>
+					<li class="${param.activePage  == 'diagnostic' ? 'active' : 'none'}"><a href="#"><spring:message code="link.diagnostic.text" /></a></li>
+					<li class="${param.activePage  == 'questions' ? 'active' : 'none'}"><a href="#"><spring:message code="link.questions.text" /></a></li>
+					<li class="pro"><a href="<c:url value="/admin/Users" />"><spring:message code="link.professionalAccess.text" /></a></li>
 				</ul>
 			</nav>
 		</div>

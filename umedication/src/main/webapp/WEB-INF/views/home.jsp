@@ -39,7 +39,7 @@
 	<!-- Header -->
     <jsp:include page="header.jsp">
         <jsp:param name="activePage" value="home"/>
-        <jsp:param name="tag" value="${context.getMessage('customer.name')}"/>
+        <jsp:param name="tag" value="${context.getMessage('tag.home')}"/>
     </jsp:include>
 	<!-- Featured -->
 	<div id="featured">
@@ -84,13 +84,13 @@
 	<!-- Slideshow -->
 	<div id="slider">
 		<figure>
-			<a href="symptomes.html"><img
+			<a href="<c:url value="/diagnostic" />"><img
 				src="<c:url value="/resources/images/slider1.PNG" />" alt=""></a>
 			<a href="http://www.urgo.fr/la-technologie-2/"><img
 				src="<c:url value="/resources/images/slider2.PNG" />" alt=""></a>
-			<a href=""><img
+			<a href="#"><img
 				src="<c:url value="/resources/images/slider3.PNG" />" alt=""></a>
-			<a href=""><img
+			<a href="#"><img
 				src="<c:url value="/resources/images/slider4.PNG" />" alt=""></a>
 			<a
 				href="http://www.urgo.fr/la-bonne-resolution-on-se-remet-au-sport/"><img
@@ -141,9 +141,7 @@
 	<div id="tweet">
 		<div class="container">
 			<section>
-				<blockquote>&ldquo;La maladie ne se guérit point en
-					prononçant le nom du médicament, mais en prenant le
-					médicament.&rdquo;</blockquote>
+				<blockquote>&ldquo;<spring:message code="tweet" />&rdquo;</blockquote>
 			</section>
 		</div>
 	</div>

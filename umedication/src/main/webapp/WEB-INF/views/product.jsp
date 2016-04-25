@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <spring:url value="/resources/js/skel.min.js" var="skelMinJs" />
 <spring:url value="/resources/js/skel-panels.min.js" var="skelPanelsMinJs" />
 <spring:url value="/resources/js/init.js" var="initJs" />
@@ -184,9 +185,7 @@
 	<div id="tweet">
 		<div class="container">
 			<section>
-				<blockquote>&ldquo;La maladie ne se guérit point en
-					prononçant le nom du médicament, mais en prenant le
-					médicament.&rdquo;</blockquote>
+				<blockquote>&ldquo;<spring:message code="tweet" />&rdquo;</blockquote>
 			</section>
 		</div>
 	</div>

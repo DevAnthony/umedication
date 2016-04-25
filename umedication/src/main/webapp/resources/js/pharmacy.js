@@ -33,7 +33,12 @@ function initialize(initialLocation) {
 		keyword: ['pharmacy','pharmacie'],
 		types: ['pharmacy','store','health']
 	};
-
+	// Resize stuff...
+	google.maps.event.addDomListener(window, "resize", function() {
+	   var center = map.getCenter();
+	   google.maps.event.trigger(map, "resize");
+	   map.setCenter(center); 
+	});
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, nearbySearchCallback);
 

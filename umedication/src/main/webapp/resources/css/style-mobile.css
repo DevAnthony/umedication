@@ -236,3 +236,9 @@ header .byline {
 	padding: 1em 1em;
 	font-size: 1.2em;
 }
+
+#main-product .row-product section {
+	width: 100%;
+	margin: 0 auto;
+	float: left;
+}

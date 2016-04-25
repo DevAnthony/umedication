@@ -105,9 +105,7 @@
 	<div id="tweet">
 		<div class="container">
 			<section>
-				<blockquote>&ldquo;La maladie ne se guérit point en
-					prononçant le nom du médicament, mais en prenant le
-					médicament.&rdquo;</blockquote>
+				<blockquote>&ldquo;<spring:message code="tweet" />&rdquo;</blockquote>
 			</section>
 		</div>
 	</div>

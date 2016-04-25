@@ -1,12 +1,13 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page session="false"%>
 <spring:url value="/resources/js/skel.min.js" var="skelMinJs" />
 <spring:url value="/resources/js/skel-panels.min.js" var="skelPanelsMinJs" />
 <spring:url value="/resources/js/init.js" var="initJs" />
 <spring:url value="/resources/css/skel-noscript.css" var="skel-noscript.css" />
 <spring:url value="/resources/css/style.css" var="styleCss" />
 <spring:url value="/resources/css/style-desktop.css" var="style-desktopCss" />
-<spring:url value="/contact" var="userActionUrl" />
 
 <!DOCTYPE HTML>
 <!--
@@ -34,47 +35,34 @@
 	<link rel="stylesheet" href="${style-desktopCss}" />
 </noscript>
 </head>
-<body class="homepage">
+<body>
+<body>
 
 	<!-- Header -->
-    <jsp:include page="header.jsp">
-        <jsp:param name="activePage" value="contact"/>
-        <jsp:param name="tag" value="Contactez nous!"/>
-    </jsp:include>
-	
-	<!-- Main -->
-	<div id="main-product">
-		<div id="content" class="container">
-			<header>
-				<h2>
-					Contactez un <span class="color-orange">professionnel de
-						santé</span>
-				</h2>
-			</header>
-			<hr />
-			<div class="form-style-8">
-				<h2>Remplisser le formulaire ci-dessous</h2>
-				<form:form method="post" modelAttribute="contactForm" action="${userActionUrl}">
-					<form:input type="text" path="name" placeholder="Nom complet*" /> 
-					<form:errors path="name" />
-					<form:input type="email" path="email" placeholder="Email*" /> 
-					<form:errors path="email" />
-					<form:input type="text" path="subject" placeholder="Sujet*" />
-					<form:errors path="subject" />
-					<form:textarea path="message" placeholder="Message*"/>
-					<form:errors path="message" />
-			     <button type="submit" class="button"><spring:message code="send" />
-                             </button>
-				</form:form>
-			</div>
+	<div id="header"  class="for-page">
+		<div id="nav-wrapper">
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="<c:url value="/" />">Accueil</a></li>
+					<li><a href="<c:url value="/products" />">Produits</a></li>
+					<li><a href="<c:url value="/pharmacy" />">Pharmacie</a></li>
+					<li><a href="#">Trouver un médicament</a></li>
+					<li><a href="#">Questions</a></li>
+					<li class="pro"><a href="#">Accès
+							professionnel</a></li>
+				</ul>
+			</nav>
 		</div>
-	</div>
+		<div>
 
-	<!-- Tweet -->
-	<div id="tweet">
-		<div class="container">
-				<blockquote>&ldquo;<spring:message code="tweet" />&rdquo;</blockquote>
-			</section>
+			<!-- Logo -->
+			<div id="logo">
+				<h1>
+					<a href="#">404</a>
+				</h1>
+				<span class="tag"><spring:message code="error.404" /></span>
+			</div>
 		</div>
 	</div>
 
@@ -83,6 +71,5 @@
 
 	<!-- Copyright -->
 	<%@include file="copyright.jsp" %>
-	
 </body>
 </html>
