@@ -46,7 +46,7 @@
 		<div class="container">
 			<header>
 				<h2>
-					<spring:message code="welcome" />&nbsp;<span class="color-orange">U-Medication</span>
+					<spring:message code="welcomeTo" />&nbsp;<span class="color-orange">U-Medication</span>
 				</h2>
 			</header>
 			<hr />
@@ -149,14 +149,6 @@
 	<!-- Footer -->
 	<%@include file="footer.jsp" %>
 	<!-- Copyright -->
-	<div id="copyright">
-		<div class="container">
-			<ul class="link-contact">
-				<li><a href="contact.html">Contact</a></li>
-				<li><a href="http://www.urgo.fr/">Site Urgo</a></li>
-				<li>Agence BCGC</li>
-			</ul>
-		</div>
-	</div>
+	<%@include file="copyright.jsp" %>
 </body>
 </html>

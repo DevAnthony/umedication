@@ -1,0 +1,29 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- toutes les infos et les confs sur la sécurité sont ici ! -->
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/pro/**" access="ROLE_DOCTOR" />
+		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+		<form-login 
+		    login-page="/login" 
+		    default-target-url="/home" 
+			authentication-failure-url="/login?error" 
+			 login-processing-url="/j_spring_security_check" 
+			username-parameter="username"
+			password-parameter="password" />
+		<logout logout-success-url="/login?logout" />
+	</http>
+
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="docteur" password="docteur" authorities="ROLE_DOCTOR" />
+				<user name="admin" password="admin" authorities="ROLE_ADMIN" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>
