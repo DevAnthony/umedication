@@ -1,12 +1,14 @@
 package com.bcgc.umedication.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bcgc.umedication.dao.QuestionDAO;
+import com.bcgc.umedication.model.Category;
 import com.bcgc.umedication.model.Question;
 
 @Service("questionService")
@@ -49,6 +51,11 @@ public class QuestionServiceImpl implements QuestionService {
 	@Transactional
 	public void removeQuestion(int id) {
 		this.questionDAO.removeQuestion(id);
+	}
+
+	@Override
+	public Map<Category, List<Question>> listQuestionsByCategory() {
+		return this.questionDAO.listQuestionsByCategory();
 	}
 
 }

@@ -1,12 +1,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <spring:url value="/resources/js/skel.min.js" var="skelMinJs" />
 <spring:url value="/resources/js/skel-panels.min.js" var="skelPanelsMinJs" />
 <spring:url value="/resources/js/init.js" var="initJs" />
 <spring:url value="/resources/css/skel-noscript.css" var="skel-noscript.css" />
 <spring:url value="/resources/css/style.css" var="styleCss" />
 <spring:url value="/resources/css/style-desktop.css" var="style-desktopCss" />
-<spring:url value="/contact" var="userActionUrl" />
+<spring:url value="/question/add" var="addQuestionUrl" />
 
 <!DOCTYPE HTML>
 <!--
@@ -51,10 +52,18 @@
 				<hr />
 				<div class="row-product questions">
 					<section>
-						<button class="accordion">Section 1</button>
-						<div class="panel">
-						  <p>Lorem ipsum...</p>
-						</div>
+					    <c:forEach items="${questionsListMap}" var="questionsList">
+							<button class="accordion">${questionsList.key.wording}</button>
+							<div class="panel">
+						    	<c:forEach items="${questionsList.value}" var="question">
+						    	
+									<button class="accordion">${question.message}</button>
+									<div class="panel">
+									  <p>Lorem ipsum...</p>
+									</div>
+						    	</c:forEach>
+							</div>
+					    </c:forEach>
 
 						<button class="accordion">Section 2</button>
 						<div class="panel">
@@ -80,25 +89,21 @@
 				<hr />
 				<div class="form-style-8">
 				  <h2>Remplisser le formulaire ci-dessous</h2>
-				  <form>
-				    <input type="text" name="field1" placeholder="Pseudo*" />
-				    <input type="email" name="field2" placeholder="Email*" />
-				    <input type="url" name="field3" placeholder="Sujet*" />
-				    <textarea placeholder="Message*"></textarea>
-				    <select id="soflow">
-					  <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
-					  <option>Médecin</option>
-					  <option>Option 1</option>
-					  <option>Option 2</option>
-					</select>
-				    <select id="soflow">
-					  <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
-					  <option>Catégories</option>
-					  <option>Option 1</option>
-					  <option>Option 2</option>
-					</select>
-				    <input type="button" value="Envoyer" />
-				  </form>
+					<form:form method="post" modelAttribute="questionForm" action="${addQuestionUrl}">
+						<form:input type="text" path="asker" placeholder="Pseudo*" /> 
+						<form:errors path="asker" />
+						<form:input type="email" path="asker_mail" placeholder="Email*" /> 
+						<form:errors path="asker_mail" />
+						<form:input type="text" path="subject" placeholder="Sujet*" />
+						<form:errors path="subject" />
+						<form:textarea path="message" placeholder="Message*"/>
+						<form:errors path="message" />
+						
+						<form:select path="category.id" id="soflow">
+							<form:options items="${categories}" itemValue="id" itemLabel="wording"></form:options>
+						</form:select>
+						<button type="submit" class="button"><spring:message code="send" /></button>
+					</form:form>
 				</div>
 			</div>
 		</div>

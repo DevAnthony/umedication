@@ -12,7 +12,7 @@
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<beans:property name="url" value="jdbc:mysql://localhost:3306/springdb" />
+		<beans:property name="url" value="jdbc:mysql://localhost:3306/umedication" />
 		<beans:property name="username" value="root" />
 		<beans:property name="password" value="" />
 	</beans:bean>
@@ -24,6 +24,7 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.bcgc.umedication.model.Question</beans:value>
+				<beans:value>com.bcgc.umedication.model.Category</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -46,8 +47,15 @@
 		<beans:property name="questionDAO" ref="questionDAO"></beans:property>
 	</beans:bean>
 	
-	<!-- #### FIN DE LA DECLARATION DES BEANS #### -->
+	<!-- bean Category -->
+	<beans:bean id="categoryDAO" class="com.bcgc.umedication.dao.CategoryDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="categoryService" class="com.bcgc.umedication.service.CategoryServiceImpl">
+		<beans:property name="categoryDAO" ref="categoryDAO"></beans:property>
+	</beans:bean>
 	
+	<!-- #### FIN DE LA DECLARATION DES BEANS #### -->
 	
 	<tx:annotation-driven />
 	
