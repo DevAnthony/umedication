@@ -7,17 +7,24 @@ import java.util.Map;
 
 
 
+
+
+
+
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bcgc.umedication.model.Answer;
 import com.bcgc.umedication.model.Category;
 import com.bcgc.umedication.model.Question;
 
@@ -41,12 +48,16 @@ public class QuestionDAOImpl implements QuestionDAO {
 	        logger.info("session retrieved");
 		}
 		catch (HibernateException e){
+			logger.warn(e.toString());
 	        session = this.sessionFactory.openSession();
-	        logger.info("session opened");
 		}
     	return session;
     }
-    
+    private void closeSession(Session session){
+        session.flush() ;
+        session.disconnect();
+        session.close();
+    }
 	@Override
 	public void addQuestion(Question q) {
         Session session = getSession();
@@ -56,7 +67,7 @@ public class QuestionDAOImpl implements QuestionDAO {
         //Question question = (Question) session.merge(q);
         //session.persist(question);
         session.save(q);
-        session.flush() ;
+        closeSession( session);
         logger.info("Question saved successfully, question details = "+q);
 
 	}
@@ -66,6 +77,20 @@ public class QuestionDAOImpl implements QuestionDAO {
         Session session = getSession();
         session.update(q);
         logger.info("Question updated successfully, question Details="+q);
+        closeSession( session);
+
+	}
+	
+	@Override
+    public void answerQuestion(Answer a) {
+        Session session = getSession();
+		Question q = getQuestionById(a.getQuestion().getId());
+		q.setAnswer(a);
+		q.setStatus("answered");
+        session.update(q);
+        
+        logger.info("Question updated successfully, question Details="+q);
+        session.flush() ;
 
 	}
 
@@ -81,6 +106,7 @@ public class QuestionDAOImpl implements QuestionDAO {
         for(Question q : questionsList){
             logger.info("Question List::"+q);
         }
+        session.flush() ;
         return questionsList;
 	}
 	
@@ -94,14 +120,17 @@ public class QuestionDAOImpl implements QuestionDAO {
         for(Question q : questionsList){
             logger.info("Question List::"+q);
         }
+        closeSession( session);
         return questionsList;
 	}
+	
 
 	@Override
 	public Question getQuestionById(int id) {
         Session session = getSession();      
         Question q = (Question) session.load(Question.class, new Integer(id));
         logger.info("Question loaded successfully, Question details="+q);
+        closeSession( session);
         return q;
 	}
 
@@ -113,6 +142,7 @@ public class QuestionDAOImpl implements QuestionDAO {
             session.delete(q);
         }
         logger.info("Question deleted successfully, Question details="+q);
+        session.flush() ;
 
 	}
 
@@ -123,6 +153,49 @@ public class QuestionDAOImpl implements QuestionDAO {
         Query query = session.createQuery("from Question");
         @SuppressWarnings("unchecked")
 		List<Question> questionsList = query.list();
+        Map<Category, List<Question>> questionMap = new HashMap<Category, List<Question>>();
+        for(Question q : questionsList){
+            logger.info("Question List::"+q);
+            if(!questionMap.containsKey(q.getCategory())){
+            	questionMap.put(q.getCategory(), new ArrayList<Question>() );
+            }
+            questionMap.get(q.getCategory()).add(q);
+        }
+        closeSession( session);
+        return questionMap;
+	}
+	
+	@Override
+	@Transactional
+	public Map<Category, List<Question>> listAnsweredQuestionsByCategory() {
+		logger.debug(this.sessionFactory.toString());
+        Session session = getSession();
+        Criteria criteria = session.createCriteria(Question.class);
+    	Criterion critere = Restrictions.eq("status", "answered");
+    	criteria.add(critere);
+        @SuppressWarnings("unchecked")
+        List<Question> questionsList = criteria.list();
+        Map<Category, List<Question>> questionMap = new HashMap<Category, List<Question>>();
+        for(Question q : questionsList){
+            logger.info("Question List::"+q);
+            if(!questionMap.containsKey(q.getCategory())){
+            	questionMap.put(q.getCategory(), new ArrayList<Question>() );
+            }
+            questionMap.get(q.getCategory()).add(q);
+        }
+        closeSession( session);
+        return questionMap;
+	}
+
+	@Override
+	public Map<Category, List<Question>> listUnansweredQuestionsByCategory() {
+		logger.debug(this.sessionFactory.toString());
+        Session session = getSession();
+        Criteria criteria = session.createCriteria(Question.class);
+    	Criterion critere = Restrictions.eq("status", "unanswered");
+    	criteria.add(critere);
+        @SuppressWarnings("unchecked")
+        List<Question> questionsList = criteria.list();
         Map<Category, List<Question>> questionMap = new HashMap<Category, List<Question>>();
         for(Question q : questionsList){
             logger.info("Question List::"+q);

@@ -18,12 +18,12 @@
 		<logout logout-success-url="/login?logout" />
 	</http>
 
-	<authentication-manager>
+   <authentication-manager>
 		<authentication-provider>
-			<user-service>
-				<user name="docteur" password="docteur" authorities="ROLE_DOCTOR" />
-				<user name="admin" password="admin" authorities="ROLE_ADMIN" />
-			</user-service>
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="select username,password,enabled from user where username=?"
+				authorities-by-username-query="select username, roleName from user, role where username = ? and user.id_role=role.id" />
 		</authentication-provider>
 	</authentication-manager>
+	
 </beans:beans>

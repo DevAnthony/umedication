@@ -28,7 +28,7 @@ public class CategoryDAOImpl implements CategoryDAO {
         @SuppressWarnings("unchecked")
         List<Category> categories = (List<Category>) criteria.list();
         for(Category c : categories){
-            logger.info("Category List::"+c);
+            logger.debug("Category List::"+c);
         }
         return categories;
 	}
@@ -43,12 +43,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public void update(Category category) {
 		  sessionFactory.getCurrentSession().merge(category);
 	}
-
-	@Override
-	public void view(Category category) {
-		  sessionFactory.getCurrentSession().merge(category);
-	}
-
+	
 	@Override
 	public void delete(int category_id) {
 		Category c = getByCategory_ID(category_id);

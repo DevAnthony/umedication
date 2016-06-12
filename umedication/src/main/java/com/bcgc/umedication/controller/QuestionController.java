@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bcgc.umedication.model.Answer;
 import com.bcgc.umedication.model.Category;
 import com.bcgc.umedication.model.Question;
 import com.bcgc.umedication.service.QuestionService;
@@ -33,17 +34,14 @@ public class QuestionController {
 		this.questionService = qs;
 	}
 	@Autowired
-	public void setQuestionService(CategoryService cs) {
+	public void setCategoryService(CategoryService cs) {
 		this.categoryService = cs;
 	}
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+
 	@RequestMapping(value = {"/question/add", "/questions"}, method = RequestMethod.GET)
-	public String home(Model model) {
+	public String questions(Model model) {
     	logger.debug("liste des questions demandee");
-    	//List<Question> questions = this.questionService.listQuestions();
-    	Map<Category, List<Question>> questions = this.questionService.listQuestionsByCategory();
+    	Map<Category, List<Question>> questions = this.questionService.listAnsweredQuestionsByCategory();
     	Question questionForm = new Question();
 		List<Category> categories = this.categoryService.listCategories();
 		model.addAttribute("questionsListMap", questions);
@@ -56,21 +54,45 @@ public class QuestionController {
 	public String addQuestion(@ModelAttribute("questionForm") Question questionForm, BindingResult result, Locale locale, Model model)
 	{
 	    if (result.hasErrors()) {
-			logger.info("result() : {}", result);
+			logger.debug("result() : {}", result);
 	    }
-	     
-		logger.info("questionForm() : {}", questionForm);
 		this.questionService.addQuestion(questionForm);
-    	logger.debug("questions ajoutee");
-		return home(model);
+		return questions(model);
 	}
 	
-	@RequestMapping(value= "/question/update", method = RequestMethod.POST)
-	public String updateQuestion(@ModelAttribute("Question") Question question, BindingResult result, Locale locale, Model model)
+	@RequestMapping(value= "/doctor/question/update", method = RequestMethod.POST)
+	public String updateQuestion(@ModelAttribute("questionForm") Question question, BindingResult result, Locale locale, Model model)
 	{
-		logger.info("QuestionForm() : {}", question);
+		logger.debug("QuestionForm() : {}", question);
 		this.questionService.updateQuestion(question);
     	logger.debug("questions modifiée");
-		return home(model);
+		return questions(model);
+	}
+
+	@RequestMapping(value = {"/doctor/answers"}, method = RequestMethod.GET)
+	public String answers(Model model) {
+    	logger.debug("liste des questions demandee");
+    	Map<Category, List<Question>> questions = this.questionService.listUnansweredQuestionsByCategory();
+
+		List<Category> categories = this.categoryService.listCategories();
+		model.addAttribute("questionsListMap", questions);
+		model.addAttribute("categories", categories);
+		model.addAttribute("answerForm", new Answer());
+		return "answers";
+	}
+
+	@RequestMapping(value= "/doctor/answer/add", method = RequestMethod.POST)
+	public String addAnswer(@ModelAttribute("answerForm") Answer answer, BindingResult result, Locale locale, Model model)
+	{
+	    if (result.hasErrors()) {
+			logger.debug("result() : {}", result);
+	    }
+		logger.debug("result() : {}", result);
+		logger.debug("answer() : {}", answer);
+		for (String key:model.asMap().keySet()){
+			logger.debug(key);
+		}
+		this.questionService.answerQuestion( answer);
+		return answers(model);
 	}
 }

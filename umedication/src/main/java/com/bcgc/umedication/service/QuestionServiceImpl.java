@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bcgc.umedication.dao.QuestionDAO;
 import com.bcgc.umedication.model.Category;
 import com.bcgc.umedication.model.Question;
+import com.bcgc.umedication.model.Answer;
 
 @Service("questionService")
 public class QuestionServiceImpl implements QuestionService {
@@ -20,19 +21,24 @@ public class QuestionServiceImpl implements QuestionService {
 	public void setQuestionDAO(QuestionDAO questionDAO) {
 		this.questionDAO = questionDAO;
 	}
-	
+
+
 	@Override
 	@Transactional
 	public void addQuestion(Question q) {
 		this.questionDAO.addQuestion(q);
-
 	}
 
 	@Override
 	@Transactional
 	public void updateQuestion(Question q) {
 		this.questionDAO.updateQuestion(q);
+	}
 
+	@Override
+	@Transactional
+	public void answerQuestion(Answer a) {
+		this.questionDAO.answerQuestion(a);
 	}
 
 	@Override
@@ -56,6 +62,16 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public Map<Category, List<Question>> listQuestionsByCategory() {
 		return this.questionDAO.listQuestionsByCategory();
+	}
+	
+	@Override
+	public Map<Category, List<Question>> listAnsweredQuestionsByCategory() {
+		return this.questionDAO.listAnsweredQuestionsByCategory();
+	}
+
+	@Override
+	public Map<Category, List<Question>> listUnansweredQuestionsByCategory() {
+		return this.questionDAO.listUnansweredQuestionsByCategory();
 	}
 
 }

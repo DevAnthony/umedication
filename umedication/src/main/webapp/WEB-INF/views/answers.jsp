@@ -7,7 +7,7 @@
 <spring:url value="/resources/css/skel-noscript.css" var="skel-noscript.css" />
 <spring:url value="/resources/css/style.css" var="styleCss" />
 <spring:url value="/resources/css/style-desktop.css" var="style-desktopCss" />
-<spring:url value="/question/add" var="addQuestionUrl" />
+<spring:url value="/doctor/answer/add" var="addAnswerUrl" />
 
 <!DOCTYPE HTML>
 <!--
@@ -39,14 +39,14 @@
 
 	<!-- Header -->
     <jsp:include page="header.jsp">
-        <jsp:param name="activePage" value="questions"/>
+        <jsp:param name="activePage" value="answers"/>
         <jsp:param name="tag" value="${context.getMessage('tag.home')}"/>
     </jsp:include>
 	<!-- Main -->
 		<div id="main-product">
 			<div id="content" class="container">
 				<header>
-					<h2><span class="color-orange">Questions</span> / Réponses</h2>
+					<h2>Questions / <span class="color-orange">Réponses</span></h2>
 					<p>Retrouvez toutes les questions sur l'auto-médication.</p>
 				</header>
 				<hr />
@@ -57,56 +57,26 @@
 							<div class="panel">
 						    	<c:forEach items="${questionsList.value}" var="question">
 						    	
-									<button class="accordion">${question.message}</button>
+									<button class="accordion">${question.subject}</button>
 									<div class="panel">
-									  <p>Lorem ipsum...</p>
+										<p>${question.message}</p>
+										<form:form method="post" modelAttribute="answerForm" action="${addAnswerUrl}">
+										
+											<form:textarea path="message" placeholder="Message*"/>
+											<form:errors path="message" />
+											
+  											<form:input type="hidden" path="question.id"   value="${question.id}"/>
+											<button type="submit" class="button"><spring:message code="answer" /></button>
+										</form:form>
 									</div>
 						    	</c:forEach>
 							</div>
 					    </c:forEach>
-
-						<button class="accordion">Section 2</button>
-						<div class="panel">
-						  <p>Lorem ipsum...</p>
-						</div>
-
-						<button class="accordion">Section 3</button>
-						<div class="panel">
-						  <p>Lorem ipsum...</p>
-						</div>
 					</section>			
 				</div>
 			</div>
 		</div>
 
-	<!-- Other product -->
-		<div id="other">
-			<div class="container">
-				<header>
-					<h2>Contactez les<span class="color-orange"> médecins URGO</span></h2>
-					<p>Posez vos questions et nos médecins agréés vous répondent !</p>
-				</header>
-				<hr />
-				<div class="form-style-8">
-				  <h2>Remplisser le formulaire ci-dessous</h2>
-					<form:form method="post" modelAttribute="questionForm" action="${addQuestionUrl}">
-						<form:input type="text" path="asker" placeholder="Pseudo*" /> 
-						<form:errors path="asker" />
-						<form:input type="email" path="asker_mail" placeholder="Email*" /> 
-						<form:errors path="asker_mail" />
-						<form:input type="text" path="subject" placeholder="Sujet*" />
-						<form:errors path="subject" />
-						<form:textarea path="message" placeholder="Message*"/>
-						<form:errors path="message" />
-						
-						<form:select path="category.id" id="soflow">
-							<form:options items="${categories}" itemValue="id" itemLabel="wording"></form:options>
-						</form:select>
-						<button type="submit" class="button"><spring:message code="send" /></button>
-					</form:form>
-				</div>
-			</div>
-		</div>
 
 	<!-- Tweet -->
 		<div id="tweet">

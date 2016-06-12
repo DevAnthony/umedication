@@ -1,11 +1,18 @@
 package com.bcgc.umedication.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 
 /**
  * Classe qui représente le Bean User.
@@ -22,12 +29,31 @@ public class User {
 	private int id;
 
 	private String username;
+
 	private String password;
+	
+	private boolean enabled;
+
+    @ManyToOne
+    @JoinColumn(name ="id_role")
+	private Role role;
+
+    @Transient
+    private List<Answer> answers;
+    
+    @ManyToMany
+    @JoinColumn(name ="id_categorie")
+    private List<Category> categories;
+	
+	
 	/* ---------- Constructeurs ---------- */
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+
+	/* ---------- Accesseurs ---------- */
 	public String getUsername() { // username
 		return username;
 	}
@@ -41,6 +67,26 @@ public class User {
 		this.password = password;
 	}
 	
+	public boolean isEnabled() {
+		return enabled;
+	}
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
+	
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	public List<Answer> getResponses() {
+		return answers;
+	}
+	public void setResponses(List<Answer> answers) {
+		this.answers = answers;
+	}
 	/* ---------- Debug ---------- */
 	@Override
 	public String toString() {

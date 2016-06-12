@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 	<div id="header"  class="${activePage == 'home' ? '' : 'for-page'}">
@@ -13,7 +14,11 @@
 					<li class="${param.activePage  == 'pharmacy' ? 'active' : 'none'}"><a href="<c:url value="/pharmacy" />"><spring:message code="link.pharmacy.text" /></a></li>
 					<li class="${param.activePage  == 'diagnostic' ? 'active' : 'none'}"><a href="#"><spring:message code="link.diagnostic.text" /></a></li>
 					<li class="${param.activePage  == 'questions' ? 'active' : 'none'}"><a href="<c:url value="/questions" />"><spring:message code="link.questions.text" /></a></li>
-							<li class="pro">
+					
+					<sec:authorize access="hasRole('ROLE_DOCTOR')">
+					<li class="${param.activePage  == 'answers' ? 'active' : 'none'}"><a href="<c:url value="/doctor/answers" />">répondre</a></li>
+					</sec:authorize>
+					<li class="pro">
 						<c:choose>
 						<c:when test="${pageContext.request.userPrincipal.name != null}">
 							<a href="<c:url value="/j_spring_security_logout" />"> Logout</a>
@@ -23,6 +28,7 @@
 						</c:otherwise>
 						</c:choose>
 					</li>
+					
 				</ul>
 			</nav>
 		</div>

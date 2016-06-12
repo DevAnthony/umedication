@@ -1,13 +1,18 @@
 package com.bcgc.umedication.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
  * Classe qui représente le Bean Question.
@@ -37,6 +42,10 @@ public class Question {
     @Column(name="statut")
     private String status;
 
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "question", cascade = CascadeType.ALL)
+    private Answer answer;
+
     @ManyToOne
     @JoinColumn(name ="id_categorie")
     private Category category;
@@ -44,6 +53,7 @@ public class Question {
 
     public Question()
     {
+    	this.answer=new Answer();
     }
     
     public Question(int QUESTION_ID, String subject, String asker, String asker_mail, String message, String status, Category category )
@@ -115,11 +125,17 @@ public class Question {
 	}
 
 	
+	public Answer getAnwser() {
+		return answer;
+	}
+
+	public void setAnswer(Answer answer) {
+		this.answer = answer;
+	}
+
+	@Override
 	public String toString(){
-		return "asker : "+this.asker +", asker_mail : "+this.asker_mail+
-				", subject : "+this.subject+", message : "+this.message+
-				", category : "+this.category+
-				", status : "+this.status;
+		return ToStringBuilder.reflectionToString(this);
 	}
     
 }

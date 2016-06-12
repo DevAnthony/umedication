@@ -4,6 +4,7 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
@@ -23,8 +24,11 @@
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="annotatedClasses">
 			<beans:list>
-				<beans:value>com.bcgc.umedication.model.Question</beans:value>
+				<beans:value>com.bcgc.umedication.model.Answer</beans:value>
 				<beans:value>com.bcgc.umedication.model.Category</beans:value>
+				<beans:value>com.bcgc.umedication.model.Question</beans:value>
+				<beans:value>com.bcgc.umedication.model.Role</beans:value>
+				<beans:value>com.bcgc.umedication.model.User</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -47,6 +51,14 @@
 		<beans:property name="questionDAO" ref="questionDAO"></beans:property>
 	</beans:bean>
 	
+	<!-- bean Answer -->
+	<beans:bean id="answerDAO" class="com.bcgc.umedication.dao.AnswerDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="answerService" class="com.bcgc.umedication.service.AnswerServiceImpl">
+		<beans:property name="answerDAO" ref="answerDAO"></beans:property>
+	</beans:bean>
+	
 	<!-- bean Category -->
 	<beans:bean id="categoryDAO" class="com.bcgc.umedication.dao.CategoryDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
@@ -55,9 +67,19 @@
 		<beans:property name="categoryDAO" ref="categoryDAO"></beans:property>
 	</beans:bean>
 	
+	<!-- bean User -->
+	<beans:bean id="userDAO" class="com.bcgc.umedication.dao.UserDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="userService" class="com.bcgc.umedication.service.UserServiceImpl">
+		<beans:property name="userDAO" ref="userDAO"></beans:property>
+	</beans:bean>
+	
 	<!-- #### FIN DE LA DECLARATION DES BEANS #### -->
 	
-	<tx:annotation-driven />
+	<context:component-scan base-package="com.bcgc.umedication" />
+	
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 	
 	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
@@ -66,6 +88,5 @@
 	<beans:bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 	    <beans:property name="cacheSeconds" value="0"></beans:property>
 	</beans:bean>
-	
 	
 </beans:beans>

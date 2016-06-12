@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.bcgc.umedication.model.User;
 import com.bcgc.umedication.service.UserService;
 
 /**
@@ -19,11 +18,11 @@ public class UserController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    private UserService UserService;
+    private UserService userService;
     
    @Autowired
-   public void setUserService(UserService ps){
-       this.UserService = ps;
+   public void setUserService(UserService us){
+       this.userService = us;
    }
     /**
 	 * Affiche une liste de tous les Users
@@ -33,7 +32,7 @@ public class UserController {
     @RequestMapping(value = "/admin/Users", method = RequestMethod.GET)
     public String listUsers(Model model) {
     	logger.debug("liste des utilisateurs demandee");
-        model.addAttribute("User", new User());
+        model.addAttribute("users", userService.listUsers());
         return "admin";
     }
 }
