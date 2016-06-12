@@ -57,9 +57,9 @@
 							<div class="panel">
 						    	<c:forEach items="${questionsList.value}" var="question">
 						    	
-									<button class="accordion">${question.message}</button>
+									<button class="accordion">${question.subject}</button>
 									<div class="panel">
-									  <p>Lorem ipsum...</p>
+									  <p>${question.message}</p>
 									</div>
 						    	</c:forEach>
 							</div>
