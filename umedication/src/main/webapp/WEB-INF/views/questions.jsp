@@ -59,7 +59,8 @@
 						    	
 									<button class="accordion">${question.subject}</button>
 									<div class="panel">
-									  <p>${question.message}</p>
+									  <h1>${question.message}</h1>
+									  <p>${question.answer}</p>
 									</div>
 						    	</c:forEach>
 							</div>

@@ -12,7 +12,7 @@
 
 	<!-- Application Loggers -->
 	<logger name="com.bcgc.umedication">
-		<level value="debug" />
+		<level value="info" />
 	</logger>
 
 	<!-- 3rdparty Loggers -->

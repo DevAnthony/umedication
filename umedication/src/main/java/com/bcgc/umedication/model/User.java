@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 
 /**
@@ -38,8 +37,6 @@ public class User {
     @JoinColumn(name ="id_role")
 	private Role role;
 
-    @Transient
-    private List<Answer> answers;
     
     @ManyToMany
     @JoinColumn(name ="id_categorie")
@@ -80,12 +77,6 @@ public class User {
 	}
 	public void setRole(Role role) {
 		this.role = role;
-	}
-	public List<Answer> getResponses() {
-		return answers;
-	}
-	public void setResponses(List<Answer> answers) {
-		this.answers = answers;
 	}
 	/* ---------- Debug ---------- */
 	@Override

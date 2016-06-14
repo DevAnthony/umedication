@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.bcgc.umedication.model.Answer;
+
 import com.bcgc.umedication.model.Category;
 import com.bcgc.umedication.model.Question;
 import com.bcgc.umedication.service.QuestionService;
@@ -77,22 +77,20 @@ public class QuestionController {
 		List<Category> categories = this.categoryService.listCategories();
 		model.addAttribute("questionsListMap", questions);
 		model.addAttribute("categories", categories);
-		model.addAttribute("answerForm", new Answer());
+		model.addAttribute("questionForm", new Question());
 		return "answers";
 	}
 
 	@RequestMapping(value= "/doctor/answer/add", method = RequestMethod.POST)
-	public String addAnswer(@ModelAttribute("answerForm") Answer answer, BindingResult result, Locale locale, Model model)
+	public String addAnswer(@ModelAttribute("questionForm") Question questionForm, BindingResult result, Locale locale, Model model)
 	{
-	    if (result.hasErrors()) {
-			logger.debug("result() : {}", result);
-	    }
-		logger.debug("result() : {}", result);
-		logger.debug("answer() : {}", answer);
-		for (String key:model.asMap().keySet()){
-			logger.debug(key);
-		}
-		this.questionService.answerQuestion( answer);
-		return answers(model);
+		logger.debug("QuestionForm() : {}", questionForm);
+		Question question_to_answer = this.questionService.getQuestionById(questionForm.getId());
+		question_to_answer.setAnswer(questionForm.getAnswer());
+		question_to_answer.setStatus("answered");
+		logger.info("question_to_answer() : {}", question_to_answer);
+		this.questionService.updateQuestion(question_to_answer);
+    	logger.debug("questions modifiée");
+		return questions(model);
 	}
 }

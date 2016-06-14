@@ -42,9 +42,12 @@ public class Question {
     @Column(name="statut")
     private String status;
 
+    @Column(name="reponse", columnDefinition="TEXT")
+    private String answer;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "question", cascade = CascadeType.ALL)
-    private Answer answer;
+    @ManyToOne
+    @JoinColumn(name ="id_user")
+    private User answer_user;
 
     @ManyToOne
     @JoinColumn(name ="id_categorie")
@@ -53,7 +56,7 @@ public class Question {
 
     public Question()
     {
-    	this.answer=new Answer();
+
     }
     
     public Question(int QUESTION_ID, String subject, String asker, String asker_mail, String message, String status, Category category )
@@ -125,11 +128,11 @@ public class Question {
 	}
 
 	
-	public Answer getAnwser() {
+	public String getAnswer() {
 		return answer;
 	}
 
-	public void setAnswer(Answer answer) {
+	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
 

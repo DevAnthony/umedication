@@ -24,7 +24,6 @@
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="annotatedClasses">
 			<beans:list>
-				<beans:value>com.bcgc.umedication.model.Answer</beans:value>
 				<beans:value>com.bcgc.umedication.model.Category</beans:value>
 				<beans:value>com.bcgc.umedication.model.Question</beans:value>
 				<beans:value>com.bcgc.umedication.model.Role</beans:value>
@@ -51,13 +50,6 @@
 		<beans:property name="questionDAO" ref="questionDAO"></beans:property>
 	</beans:bean>
 	
-	<!-- bean Answer -->
-	<beans:bean id="answerDAO" class="com.bcgc.umedication.dao.AnswerDAOImpl">
-		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-	</beans:bean>
-	<beans:bean id="answerService" class="com.bcgc.umedication.service.AnswerServiceImpl">
-		<beans:property name="answerDAO" ref="answerDAO"></beans:property>
-	</beans:bean>
 	
 	<!-- bean Category -->
 	<beans:bean id="categoryDAO" class="com.bcgc.umedication.dao.CategoryDAOImpl">

@@ -24,7 +24,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bcgc.umedication.model.Answer;
 import com.bcgc.umedication.model.Category;
 import com.bcgc.umedication.model.Question;
 
@@ -81,19 +80,6 @@ public class QuestionDAOImpl implements QuestionDAO {
 
 	}
 	
-	@Override
-    public void answerQuestion(Answer a) {
-        Session session = getSession();
-		Question q = getQuestionById(a.getQuestion().getId());
-		q.setAnswer(a);
-		q.setStatus("answered");
-        session.update(q);
-        
-        logger.info("Question updated successfully, question Details="+q);
-        session.flush() ;
-
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Question> getQuestionsByCategory(String category) {

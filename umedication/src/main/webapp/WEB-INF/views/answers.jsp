@@ -60,12 +60,12 @@
 									<button class="accordion">${question.subject}</button>
 									<div class="panel">
 										<p>${question.message}</p>
-										<form:form method="post" modelAttribute="answerForm" action="${addAnswerUrl}">
+										<form:form method="post" modelAttribute="questionForm" action="${addAnswerUrl}">
 										
-											<form:textarea path="message" placeholder="Message*"/>
-											<form:errors path="message" />
+											<form:textarea path="answer" placeholder="Message*"/>
+											<form:errors path="answer" />
 											
-  											<form:input type="hidden" path="question.id"   value="${question.id}"/>
+  											<form:input type="hidden" path="id" value="${question.id}"/>
 											<button type="submit" class="button"><spring:message code="answer" /></button>
 										</form:form>
 									</div>

@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bcgc.umedication.dao.QuestionDAO;
 import com.bcgc.umedication.model.Category;
 import com.bcgc.umedication.model.Question;
-import com.bcgc.umedication.model.Answer;
 
 @Service("questionService")
 public class QuestionServiceImpl implements QuestionService {
@@ -33,12 +32,6 @@ public class QuestionServiceImpl implements QuestionService {
 	@Transactional
 	public void updateQuestion(Question q) {
 		this.questionDAO.updateQuestion(q);
-	}
-
-	@Override
-	@Transactional
-	public void answerQuestion(Answer a) {
-		this.questionDAO.answerQuestion(a);
 	}
 
 	@Override
