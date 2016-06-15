@@ -29,7 +29,7 @@ public class ContactFormValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "subject", "NotEmpty.contactForm.subject");
 
 		if(!emailValidator.valid(contact.getEmail())){
-			errors.rejectValue("email", "Pattern.userForm.email");
+			errors.rejectValue("email", "Pattern.contactForm.email");
 		}
 	}
 
