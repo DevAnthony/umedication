@@ -21,7 +21,19 @@
 					<li class="pro">
 						<c:choose>
 						<c:when test="${pageContext.request.userPrincipal.name != null}">
-							<a href="<c:url value="/j_spring_security_logout" />"> Logout</a>
+
+							<!-- csrt for log out-->
+							<c:url value="/j_spring_security_logout" var="logoutUrl" />
+							<form action="${logoutUrl}" method="post" id="logoutForm">
+							  <input type="hidden" 
+								name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+							</form>
+	
+							<script>
+								function formSubmit() { document.getElementById("logoutForm").submit(); }
+							</script>
+							<a href="javascript:formSubmit()"> Logout</a>	
 						</c:when>
 						<c:otherwise>
 							<a href="<c:url value="/login" />"><spring:message code="link.professionalAccess.text" /></a>

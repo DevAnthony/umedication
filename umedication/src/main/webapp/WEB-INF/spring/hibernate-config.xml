@@ -25,6 +25,7 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.bcgc.umedication.model.Category</beans:value>
+				<beans:value>com.bcgc.umedication.model.Drug</beans:value>
 				<beans:value>com.bcgc.umedication.model.Question</beans:value>
 				<beans:value>com.bcgc.umedication.model.Role</beans:value>
 				<beans:value>com.bcgc.umedication.model.User</beans:value>

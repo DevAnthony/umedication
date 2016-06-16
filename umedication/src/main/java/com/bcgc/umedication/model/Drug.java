@@ -20,7 +20,17 @@ public class Drug {
     @Column(name="id_drug")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+
+    @Column(name="nom")
+    private String name;
     
+    @Column(name="is_from_urgo")
+    private boolean isFromUrgo;
+
+	private String indications;
+	private String présentation;
+	
+	
 	/* ---------- Debug ---------- */
 	@Override
 	public String toString() {
