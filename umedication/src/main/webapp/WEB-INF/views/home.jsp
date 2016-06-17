@@ -65,7 +65,7 @@
 					</h3>
 					<p>Rechercher une pharmacie possédant votre médicament, et tout
 						ça en un clique !</p>
-					<a href="#" class="button button-style1">Voir plus</a>
+					<a href="<c:url value="/pharmacy" />" class="button button-style1">Voir plus</a>
 				</section>
 				<section class="4u">
 					<span class="pennant"><span class="fa fa-user-md"></span></span>
@@ -74,7 +74,7 @@
 					</h3>
 					<p>Une équipe de professionnel de la santé sont à disposition
 						pour répondre à vos questions!</p>
-					<a href="#" class="button button-style1">Accès au forum</a>
+					<a href="<c:url value="/questions" />" class="button button-style1">Accès au forum</a>
 				</section>
 
 			</div>
@@ -130,7 +130,7 @@
 					</h3>
 				</section>
 				<section class="bouton-video">
-					<a href="#" class="button button-style1">Voir plus de vidéos</a>
+					<a target="_blank" href="https://www.youtube.com/user/URGO21" class="button button-style1">Voir plus de vidéos</a>
 				</section>
 			</div>
 		</div>

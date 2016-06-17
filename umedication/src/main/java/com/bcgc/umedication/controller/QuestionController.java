@@ -11,15 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 
 
 import com.bcgc.umedication.model.Category;
 import com.bcgc.umedication.model.Question;
 import com.bcgc.umedication.service.QuestionService;
 import com.bcgc.umedication.service.CategoryService;
+import com.bcgc.umedication.validator.QuestionFormValidator;
 
 @Controller
 public class QuestionController {
@@ -29,6 +33,16 @@ public class QuestionController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(QuestionController.class);
 
+    
+	@Autowired
+	QuestionFormValidator questionFormValidator;
+	   
+	//Set a form validator
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.setValidator(questionFormValidator);
+	}
+	
 	@Autowired
 	public void setQuestionService(QuestionService qs) {
 		this.questionService = qs;

@@ -45,14 +45,14 @@
 		<div id="content" class="container">
 			<header>
 				<h2>
-					Produits : <span class="color-orange">Biafine</span>
+					Produits : <span class="color-orange">${product.name}</span>
 				</h2>
 				<p>Emulsion pour application cutanee</p>
 			</header>
 			<hr />
 			<div class="row-product">
 				<section>
-					<a href="#" class="image full"><img src="<c:url value="/resources/images/biafine.jpg" />"
+					<a href="#" class="image full"><img src="<c:url value="/resources/images/medicaments/${product.id}.jpg" />"
 						alt=""></a> <a
 						href="http://www.pharmanco.com/Achat-medicament-en-ligne"
 						target="_blank"><button class="btn btn-default" type="button">Acheter
@@ -63,49 +63,31 @@
 						<div id="tab-1">
 							<a href="#tab-1" class="tab">Indications thérapeutiques</a>
 							<div class="content">
-								<ul>
-									<li><span>»</span> Erythèmes secondaires à des traitements
-										radiothérapiques.</li>
-									<li><span>»</span> Brûlures du premier et du second degré
-										et toute autre plaie cutanée non infectée.</li>
-								</ul>
+								${product.indications}
 							</div>
 						</div>
 						<div id="tab-2">
 							<a href="#tab-2" class="tab">Présentation</a>
 							<div class="content">
 								<ul>
-									<li><span>»</span> Emulsion</li>
-									<li><span>»</span> Laboratoire johnson et johnson consumer
-										france sas</li>
+									<li><span>»</span> ${product.presentation}</li>
+									<li><span>»</span>${product.laboratory}</li>
 								</ul>
 							</div>
 						</div>
 						<div id="tab-3">
 							<a href="#tab-3" class="tab">Mode d'administration</a>
 							<div class="content">
-								<ul>
-									<li><span>»</span> Voie d'administration : Cutanée</li>
-									<li><span>»</span> Utiliser en massage</li>
-									<li><span>»</span> Appliquer sur la zone à traiter</li>
-									<li><span>»</span> Appliquer en couche épaisse</li>
-									<li><span>»</span> Appliquer en couche mince</li>
-									<li><span>»</span> Respecter les modalités
-										d'administration</li>
-								</ul>
+									 ${product.administration}
 							</div>
 						</div>
 						<div id="tab-4">
 							<a href="#tab-4" class="tab">Conservation</a>
 							<div class="content">
-								<ul>
-									<li><span>»</span> 36 mois</li>
-									<li><span>»</span> A temperature ambiante</li>
-									<li><span>»</span> A l'abri du gel (inférieur à 0°)</li>
-								</ul>
+									 ${product.conservation}
 							</div>
 						</div>
-						<div id="tab-5">
+<!-- 						<div id="tab-5">
 							<a href="#tab-5" class="tab">Groupe(s) générique(s)</a>
 							<div class="content">
 								<ul>
@@ -116,16 +98,12 @@
 								</ul>
 							</div>
 						</div>
+ -->
 						<div id="tab-6">
 							<a href="#tab-6" class="tab">Effets indésirables possibles du
 								médicament BIAFINE</a>
 							<div class="content">
-								<ul>
-									<li><span>»</span> Picotements passagers après
-										l'application.</li>
-									<li><span>»</span> Rarement : réaction allergique cutanée
-										(eczéma de contact), nécessitant l'arrêt du traitement.</li>
-								</ul>
+									 ${product.sideEffects}
 							</div>
 						</div>
 					</div>
@@ -154,20 +132,20 @@
 				</section>
 				<section class="6u">
 					<a href="<c:url value="/product/2" />" class="image full"><img
-						src="<c:url value="/resources/images/drill.jpg" />" alt=""></a>
-					<header>
-						<h2>Drill</h2>
-					</header>
-					<p>In posuere eleifend odio.</p>
-				</section>
-				<section class="6u">
-					<a href="<c:url value="/product/3" />" class="image full"><img
 						src="<c:url value="/resources/images/actifed.jpg" />" alt=""></a>
 					<header>
 						<h2>Actifed</h2>
 					</header>
 					<p>In posuere eleifend odio. Quisque semper augue mattis wisi.
 						Maecenas ligula.</p>
+				</section>
+				<section class="6u">
+					<a href="<c:url value="/product/3" />" class="image full"><img
+						src="<c:url value="/resources/images/drill.jpg" />" alt=""></a>
+					<header>
+						<h2>Drill</h2>
+					</header>
+					<p>In posuere eleifend odio.</p>
 				</section>
 				<section class="6u">
 					<a href="<c:url value="/product/4" />" class="image full"><img

@@ -53,39 +53,16 @@
 			</header>
 
 			<div class="row">
+				<c:forEach items="${productsList}" var="product">
 				<section class="6u">
-					<a href="<c:url value="/product/1" />" class="image full"><img
-						src="<c:url value="/resources/images/biafine.jpg" />" alt=""></a>
+					<a href="<c:url value="/product/${product.id}" />" class="image full"><img
+						src="<c:url value="/resources/images/medicaments/${product.id}.jpg" />" alt=""></a>
 					<header>
-						<h2>Biafine</h2>
+						<h2>${product.name}</h2>
 					</header>
 					<p>Emulsion pour application cutanee</p>
 				</section>
-				<section class="6u">
-					<a href="<c:url value="/product/2" />" class="image full"><img
-						src="<c:url value="/resources/images/drill.jpg" />" alt=""></a>
-					<header>
-						<h2>Drill</h2>
-					</header>
-					<p>In posuere eleifend odio.</p>
-				</section>
-				<section class="6u">
-					<a href="<c:url value="/product/3" />" class="image full"><img
-						src="<c:url value="/resources/images/actifed.jpg" />" alt=""></a>
-					<header>
-						<h2>Actifed</h2>
-					</header>
-					<p>In posuere eleifend odio. Quisque semper augue mattis wisi.
-						Maecenas ligula.</p>
-				</section>
-				<section class="6u">
-					<a href="<c:url value="/product/4" />" class="image full"><img
-						src="<c:url value="/resources/images/rhinadvil.jpg" />" alt=""></a>
-					<header>
-						<h2>Rhinadvil</h2>
-					</header>
-					<p>In posuere eleifend odio. Quisque semper augue mattis wisi.</p>
-				</section>
+				</c:forEach>
 			</div>
 
 			<div class="row">

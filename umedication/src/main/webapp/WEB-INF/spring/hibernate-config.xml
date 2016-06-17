@@ -43,6 +43,14 @@
 	<!-- ######################################### -->
 	<!-- #### LES BEANS SONT DECLARES ICI !!! #### -->
 	<!-- ######################################### -->
+	<!-- bean Category -->
+	<beans:bean id="categoryDAO" class="com.bcgc.umedication.dao.CategoryDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="categoryService" class="com.bcgc.umedication.service.CategoryServiceImpl">
+		<beans:property name="categoryDAO" ref="categoryDAO"></beans:property>
+	</beans:bean>
+	
 	<!-- bean Question -->
 	<beans:bean id="questionDAO" class="com.bcgc.umedication.dao.QuestionDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
@@ -52,12 +60,12 @@
 	</beans:bean>
 	
 	
-	<!-- bean Category -->
-	<beans:bean id="categoryDAO" class="com.bcgc.umedication.dao.CategoryDAOImpl">
+	<!-- bean Drug -->
+	<beans:bean id="drugDAO" class="com.bcgc.umedication.dao.DrugDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-	<beans:bean id="categoryService" class="com.bcgc.umedication.service.CategoryServiceImpl">
-		<beans:property name="categoryDAO" ref="categoryDAO"></beans:property>
+	<beans:bean id="drugService" class="com.bcgc.umedication.service.DrugServiceImpl">
+		<beans:property name="drugDAO" ref="drugDAO"></beans:property>
 	</beans:bean>
 	
 	<!-- bean User -->
